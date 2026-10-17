@@ -8,9 +8,13 @@ sellers = [
     {"name": "Bob", "min_price": 12},
 ]
 
-if buyers[0]["max_price"] >= sellers[0]["min_price"]:
-    trade_price = sellers[0]["min_price"]
-    print("Jane and Alice can make a trade.")
-    print(f"Trade price: {trade_price}")
-else:
-    print("Jane and Alice cannot make a trade.")
+for buyer in buyers:
+    for seller in sellers:
+        if buyer["max_price"] >= seller["min_price"]:
+            trade_price = seller["min_price"]
+            print(
+                f'{buyer["name"]} and {seller["name"]} can trade '
+                f'at {trade_price}.'
+            )
+        else:
+            print(f'{buyer["name"]} and {seller["name"]} cannot trade.')
