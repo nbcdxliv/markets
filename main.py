@@ -8,13 +8,29 @@ sellers = [
     {"name": "Bob", "min_price": 12},
 ]
 
+remaining_sellers = sellers.copy()
+trades = []
+
 for buyer in buyers:
-    for seller in sellers:
+    trade_found = False
+
+    for seller in remaining_sellers:
         if buyer["max_price"] >= seller["min_price"]:
             trade_price = seller["min_price"]
             print(
-                f'{buyer["name"]} and {seller["name"]} can trade '
+                f'{buyer["name"]} buys from {seller["name"]} '
                 f'at {trade_price}.'
             )
-        else:
-            print(f'{buyer["name"]} and {seller["name"]} cannot trade.')
+            trades.append((buyer["name"], seller["name"], trade_price)) 
+            remaining_sellers.remove(seller)
+            trade_found = True
+            break
+
+    if not trade_found:
+        print(f'{buyer["name"]} could not find a seller.')
+
+print("\nTrade summary:")
+for buyer_name, seller_name, price in trades:
+    print(f"{buyer_name} bought from {seller_name} for {price}.")
+
+print(f"Total trades: {len(trades)}")
