@@ -10,6 +10,7 @@ sellers = [
 
 remaining_sellers = sellers.copy()
 trades = []
+total_surplus = 0
 
 for buyer in buyers:
     trade_found = False
@@ -23,6 +24,7 @@ for buyer in buyers:
             )
             buyer_surplus = buyer["max_price"] - trade_price
             seller_surplus = trade_price - seller["min_price"]
+            total_surplus += buyer_surplus + seller_surplus
             print(f' Buyer surplus: {buyer_surplus}, Seller surplus: {seller_surplus}')
             trades.append((buyer["name"], seller["name"], trade_price)) 
             remaining_sellers.remove(seller)
@@ -37,3 +39,4 @@ for buyer_name, seller_name, price in trades:
     print(f"{buyer_name} bought from {seller_name} for {price}.")
 
 print(f"Total trades: {len(trades)}")
+print(f"Total surplus: {total_surplus}")
