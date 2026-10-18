@@ -4,8 +4,8 @@ buyers = [
 ]
 
 sellers = [
-    {"name": "Alice", "min_price": 7},
-    {"name": "Bob", "min_price": 12},
+    {"name": "Alice", "min_price": 9},
+    {"name": "Bob", "min_price": 11},
 ]
 
 remaining_sellers = sellers.copy()
@@ -21,6 +21,9 @@ for buyer in buyers:
                 f'{buyer["name"]} buys from {seller["name"]} '
                 f'at {trade_price}.'
             )
+            buyer_surplus = buyer["max_price"] - trade_price
+            seller_surplus = trade_price - seller["min_price"]
+            print(f' Buyer surplus: {buyer_surplus}, Seller surplus: {seller_surplus}')
             trades.append((buyer["name"], seller["name"], trade_price)) 
             remaining_sellers.remove(seller)
             trade_found = True
