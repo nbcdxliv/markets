@@ -17,7 +17,8 @@ for buyer in buyers:
 
     for seller in remaining_sellers:
         if buyer["max_price"] >= seller["min_price"]:
-            trade_price = seller["min_price"]
+            # calculate the mid price between the buyer's max price and the seller's min price
+            trade_price = (buyer["max_price"] + seller["min_price"]) / 2
             print(
                 f'{buyer["name"]} buys from {seller["name"]} '
                 f'at {trade_price}.'
