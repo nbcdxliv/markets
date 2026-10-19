@@ -1,14 +1,15 @@
 buyers = [
-    {"name": "Jane", "max_price": 10},
+    {"name": "Jane", "max_price": 15},
     {"name": "John", "max_price": 15},
 ]
 
 sellers = [
-    {"name": "Alice", "min_price": 9},
     {"name": "Bob", "min_price": 11},
+    {"name": "Alice", "min_price": 9},
 ]
 
 remaining_sellers = sellers.copy()
+remaining_sellers.sort(key=lambda seller: seller["min_price"])  # sort sellers by min_price
 trades = []
 total_surplus = 0
 
